@@ -21,4 +21,9 @@ public class Memoria {
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
+
+    public Memoria(String titulo, String descricao) {
+        this.titulo = titulo;
+        this.descricao = descricao;
+    }
 }

@@ -30,14 +30,33 @@ public class SolicitacaoService {
         solicitacao.setStatus(status);
 
         Solicitacao salva = repository.save(solicitacao);
-        log.info("Solicitação {} cadastrada com sucesso!", salva.getId());
+        log.info("Solicitação '{}' cadastrada com sucesso!", salva.getId());
         return salva;
     }
 
-    public List<Solicitacao> listarTodas() {
-        List<Solicitacao> solicitacoes = repository.findAll();
-        log.info("Total de solicitações encontradas: {}", solicitacoes.size());
-        return solicitacoes;
+
+    public List<Solicitacao> listarPorTitulo(String titulo) {
+        if (titulo != null && !titulo.isBlank()) {
+            List<Solicitacao> solicitacaos = repository.findAllByTituloIgnoreCase(titulo);
+            log.info("Total de solicitações encontradas: '{}' com este título: {}", solicitacaos.size(), titulo);
+            return solicitacaos;
+        } else {
+            List<Solicitacao> solicitacaos = repository.findAll();
+            log.info("Total de solicitação encontradas: {}", solicitacaos.size());
+            return solicitacaos;
+        }
+    }
+
+    public List<Solicitacao> listar(String status) {
+        if (status != null && !status.isBlank()) {
+            List<Solicitacao> solicitacoes = repository.findAllByStatusNomeIgnoreCase(status);
+            log.info("Total de solicitações encontradas: '{}' com este status: {}", solicitacoes.size(), status);
+            return solicitacoes;
+        } else {
+            List<Solicitacao> solicitacoes = repository.findAll();
+            log.info("Total de solicitação encontradas: {}", solicitacoes.size());
+            return solicitacoes;
+        }
     }
 
     public Solicitacao buscarPorId(Integer id) {
@@ -53,7 +72,7 @@ public class SolicitacaoService {
         this.atualizarStatus(origem, destino);
 
         Solicitacao salvo = repository.save(origem);
-        log.info("Solicitação {} atualizada com sucesso!", salvo.getId());
+        log.info("Solicitação '{}' atualizada com sucesso!", salvo.getId());
         return salvo;
     }
 
@@ -79,13 +98,13 @@ public class SolicitacaoService {
     public void deletar(Integer id) {
         Solicitacao solicitacao = buscarPorId(id);
         repository.delete(solicitacao);
-        log.info("Solicitação {} deletada com sucesso!", solicitacao.getId());
+        log.info("Solicitação '{}' deletada com sucesso!", solicitacao.getId());
     }
 
     public void aceitarSolicitacao(Integer id) {
         Solicitacao solicitacao = this.buscarPorId(id);
-
         if (solicitacao != null) {
+            log.info("Solicitação com título: '{}' aceita com sucesso", solicitacao.getTitulo());
             Status recusado = statusService.buscarPorNome("ACEITO");
             solicitacao.setStatus(recusado);
             repository.save(solicitacao);
@@ -96,6 +115,7 @@ public class SolicitacaoService {
     public void recusarSolicitacao(Integer id) {
         Solicitacao solicitacao = this.buscarPorId(id);
         if (solicitacao != null) {
+            log.info("Solicitação com título: '{}' recusada com sucesso", solicitacao.getTitulo());
             Status recusado = statusService.buscarPorNome("RECUSADO");
             solicitacao.setStatus(recusado);
             repository.save(solicitacao);

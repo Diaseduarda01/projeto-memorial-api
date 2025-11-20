@@ -21,7 +21,6 @@ public class SolicitacaoMapper {
                 dto.descricao()
         );
 
-        solicitacao.setStatus(statusMapper.toEntity(dto.status()));
         solicitacao.setUsuario(usuarioMapper.toEntity(dto.usuario()));
 
         return solicitacao;

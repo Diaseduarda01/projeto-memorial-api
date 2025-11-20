@@ -24,7 +24,7 @@ public class MemoriaService {
         memoria.setUsuario(usuario);
 
         Memoria salva = repository.save(memoria);
-        log.info("Memória {} cadastrada com sucesso!", salva.getId());
+        log.info("Memória {} cadastrada com sucesso!", salva.getTitulo());
         return salva;
     }
 

@@ -21,7 +21,6 @@ public class UsuarioControllerImpl implements UsuarioControllerDoc {
 
     private final UsuarioService service;
     private final UsuarioMapper mapper;
-    private final RoleMapper roleMapper;
 
     @Override
     public ResponseEntity<UsuarioResponseDto> cadastrar(UsuarioRequestDto dto) {

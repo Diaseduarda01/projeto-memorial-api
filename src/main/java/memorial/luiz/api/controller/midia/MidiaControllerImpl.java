@@ -19,14 +19,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/midias")
 @AllArgsConstructor
-public class MidiaControllerImpl {
+public class MidiaControllerImpl implements MidiaControllerDoc{
 
     private final MidiaService midiaService;
     private final MidiaMapper mapper;
     private final SolicitacaoService solicitacaoService;
     private final MemoriaService memoriaService;
 
-    @PostMapping("/upload")
+    @Override
     public ResponseEntity<List<MidiaResponseDto>> upload(
             @RequestParam("arquivos") List<MultipartFile> arquivos,
             @RequestParam("tipo") TipoMidia tipo,
@@ -50,7 +50,7 @@ public class MidiaControllerImpl {
         return ResponseEntity.status(200).body(midias);
     }
 
-    @GetMapping("/solicitacao/{id}")
+    @Override
     public ResponseEntity<List<MidiaResponseDto>> buscarPorSolicitacao(@PathVariable Integer id) {
        List<Midia> midias = midiaService.buscarPorSolicitacao(id);
 
@@ -61,7 +61,7 @@ public class MidiaControllerImpl {
                .toList());
     }
 
-    @GetMapping("/memoria/{id}")
+    @Override
     public ResponseEntity<List<MidiaResponseDto>> buscarPorMemoria(@PathVariable Integer id) {
         List<Midia> midias = midiaService.buscarPorMemoria(id);
 

@@ -28,7 +28,7 @@ public class MemoriaService {
         return salva;
     }
 
-    public List<Memoria> listarTodas() {
+    public List<Memoria> listar() {
         List<Memoria> solicitacoes = repository.findAll();
         log.info("Total de solicitações encontradas: {}", solicitacoes.size());
         return solicitacoes;
@@ -39,32 +39,32 @@ public class MemoriaService {
                 .orElseThrow(MemoriaNaoEncontradoException::new);
     }
 
-    public Memoria atualizar(Integer id, Memoria destino) {
-        Memoria origem = buscarPorId(id);
-
-        this.atualizarDadosBasicos(origem, destino);
-        this.atualizarUsuario(origem, destino);
-
-        Memoria salvo = repository.save(origem);
-        log.info("Memória {} atualizada com sucesso!", salvo.getId());
-        return salvo;
-    }
-
-    private void atualizarDadosBasicos(Memoria origem, Memoria destino) {
-        origem.setTitulo(destino.getTitulo());
-        origem.setDescricao(destino.getDescricao());
-    }
-
-    private void atualizarUsuario(Memoria origem, Memoria destino) {
-        if (destino.getUsuario() != null) {
-            Usuario usuario = usuarioService.buscarPorId(destino.getUsuario().getId());
-            origem.setUsuario(usuario);
-        }
-    }
-
-    public void deletar(Integer id) {
-        Memoria memoria = buscarPorId(id);
-        repository.delete(memoria);
-        log.info("Memória {} deletada com sucesso!", memoria.getId());
-    }
+//    public Memoria atualizar(Integer id, Memoria destino) {
+//        Memoria origem = buscarPorId(id);
+//
+//        this.atualizarDadosBasicos(origem, destino);
+//        this.atualizarUsuario(origem, destino);
+//
+//        Memoria salvo = repository.save(origem);
+//        log.info("Memória {} atualizada com sucesso!", salvo.getId());
+//        return salvo;
+//    }
+//
+//    private void atualizarDadosBasicos(Memoria origem, Memoria destino) {
+//        origem.setTitulo(destino.getTitulo());
+//        origem.setDescricao(destino.getDescricao());
+//    }
+//
+//    private void atualizarUsuario(Memoria origem, Memoria destino) {
+//        if (destino.getUsuario() != null) {
+//            Usuario usuario = usuarioService.buscarPorId(destino.getUsuario().getId());
+//            origem.setUsuario(usuario);
+//        }
+//    }
+//
+//    public void deletar(Integer id) {
+//        Memoria memoria = buscarPorId(id);
+//        repository.delete(memoria);
+//        log.info("Memória {} deletada com sucesso!", memoria.getId());
+//    }
 }

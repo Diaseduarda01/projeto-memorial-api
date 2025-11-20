@@ -16,4 +16,8 @@ public class Status {
     private Integer id;
 
     private String nome;
+
+    public Status(String nome) {
+        this.nome = nome;
+    }
 }

@@ -19,4 +19,8 @@ public class Role {
     private Integer id;
 
     private String nome;
+
+    public Role(String nome) {
+        this.nome = nome;
+    }
 }

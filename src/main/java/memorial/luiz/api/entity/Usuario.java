@@ -23,4 +23,11 @@ public class Usuario {
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;
+
+    public Usuario(String nome, String email, String telefone, String senha) {
+        this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
+        this.senha = senha;
+    }
 }

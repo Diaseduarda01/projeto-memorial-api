@@ -6,6 +6,7 @@ import memorial.luiz.api.entity.Memoria;
 import memorial.luiz.api.entity.Solicitacao;
 import memorial.luiz.api.entity.Status;
 import memorial.luiz.api.entity.Usuario;
+import memorial.luiz.api.exception.naoencontrado.MemoriaNaoEncontradoException;
 import memorial.luiz.api.repository.SolicitacaoRepository;
 import org.springframework.stereotype.Service;
 
@@ -41,7 +42,7 @@ public class SolicitacaoService {
 
     public Solicitacao buscarPorId(Integer id) {
         return repository.findById(id)
-                .orElseThrow();
+                .orElseThrow(MemoriaNaoEncontradoException::new);
     }
 
     public Solicitacao atualizar(Integer id, Solicitacao destino) {

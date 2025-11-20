@@ -25,4 +25,9 @@ public class Solicitacao {
     @ManyToOne
     @JoinColumn(name = "status_id")
     private Status status;
+
+    public Solicitacao(String titulo, String descricao) {
+        this.titulo = titulo;
+        this.descricao = descricao;
+    }
 }

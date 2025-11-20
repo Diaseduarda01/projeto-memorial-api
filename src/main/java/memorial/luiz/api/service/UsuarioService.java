@@ -26,7 +26,18 @@ public class UsuarioService {
         return usuarioSalvo;
     }
 
-    public List<Usuario> listarTodos() {
+    public Usuario buscarPorEmailAndSenha(String email, String senha) {
+        Usuario usuario = repository.findByEmailAndSenha(email, senha);
+        if (usuario != null) {
+            log.info("Usuário encontrado no banco com email: {}", usuario.getEmail());
+            return usuario;
+        }
+
+        log.info("Nenhum usuário encontrado com email: {}", email);
+        return null;
+    }
+
+    public List<Usuario> listar() {
         List<Usuario> usuarios = repository.findAll();
         log.info("Total de usuários encontrados no banco: {} ", usuarios.size());
         return usuarios;

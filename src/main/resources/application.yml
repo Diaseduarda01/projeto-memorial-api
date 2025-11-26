@@ -9,5 +9,21 @@ server:
     include-exception: false
   forward-headers-strategy: framework
 
-#jwt:
-#  secret: 3dMkKj1nbzVj2OY5DJ6T4Qm8Y5ZXx7qA3FV7Xo0Ns38=
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://aws-0-us-west-2.pooler.supabase.com:5432/postgres}
+    username: ${DB_USER:postgres.mdkredgdwbjakybztuat}
+    password: ${DB_PASSWORD:1608dudas}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+
+  docker:
+    compose:
+      enabled: false

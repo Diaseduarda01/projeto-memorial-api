@@ -19,7 +19,7 @@ public class UsuarioMapper {
         Usuario usuario = new Usuario(
                 dto.nome(),
                 dto.email(),
-                dto.telefone(),
+                dto.relacao(),
                 dto.senha()
         );
 
@@ -41,7 +41,7 @@ public class UsuarioMapper {
                 usuario.getId(),
                 usuario.getNome(),
                 usuario.getEmail(),
-                usuario.getTelefone(),
+                usuario.getRelacao(),
                 roleMapper.toResponse(usuario.getRole())
         );
     }

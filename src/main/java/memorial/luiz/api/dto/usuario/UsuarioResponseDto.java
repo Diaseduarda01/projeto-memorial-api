@@ -6,7 +6,7 @@ public record UsuarioResponseDto(
         Integer id,
         String nome,
         String email,
-        String telefone,
+        String relacao,
         RoleResponseDto role
 ) {
 }

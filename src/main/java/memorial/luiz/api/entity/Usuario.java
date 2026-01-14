@@ -17,17 +17,17 @@ public class Usuario {
 
     private String nome;
     private String email;
-    private String telefone;
+    private String relacao;
     private String senha;
 
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;
 
-    public Usuario(String nome, String email, String telefone, String senha) {
+    public Usuario(String nome, String email, String relacao, String senha) {
         this.nome = nome;
         this.email = email;
-        this.telefone = telefone;
+        this.relacao = relacao;
         this.senha = senha;
     }
 }

@@ -62,7 +62,7 @@ public class UsuarioService {
     public void atualizarDadosBasicos(Usuario origem, Usuario destino) {
         origem.setNome(destino.getNome());
         origem.setEmail(destino.getEmail());
-        origem.setTelefone(destino.getTelefone());
+        origem.setRelacao(destino.getRelacao());
         origem.setSenha(destino.getSenha());
     }
 

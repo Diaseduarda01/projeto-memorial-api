@@ -5,7 +5,7 @@ import memorial.luiz.api.dto.role.RoleRequestDto;
 public record UsuarioRequestDto(
         String nome,
         String email,
-        String telefone,
+        String relacao,
         String senha,
         RoleRequestDto role
 ) {

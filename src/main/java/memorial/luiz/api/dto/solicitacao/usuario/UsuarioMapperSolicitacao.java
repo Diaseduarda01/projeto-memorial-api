@@ -1,31 +1,30 @@
-package memorial.luiz.api.dto.usuario;
+package memorial.luiz.api.dto.solicitacao.usuario;
 
 import lombok.AllArgsConstructor;
 import memorial.luiz.api.dto.role.RoleMapper;
+import memorial.luiz.api.dto.usuario.UsuarioResponseDto;
 import memorial.luiz.api.entity.Usuario;
 import memorial.luiz.api.service.UsuarioService;
 import org.springframework.stereotype.Component;
 
 @Component
 @AllArgsConstructor
-public class UsuarioMapper {
+public class UsuarioMapperSolicitacao {
 
     private final RoleMapper roleMapper;
     private final UsuarioService service;
 
-    public Usuario toEntity(UsuarioRequestDto dto) {
+    public Usuario toEntity(UsuarioRequestDtoSolicitacao dto) {
         if (dto == null) return null;
 
-        Usuario usuario = new Usuario(
-                dto.nome(),
-                dto.email(),
-                dto.relacao(),
-                dto.senha()
-        );
+        Usuario usuario = new Usuario();
 
+        usuario.setNome(dto.nome());
+        usuario.setEmail(dto.email());
         usuario.setRole(roleMapper.toEntity(dto.role()));
+        usuario.setRelacao(dto.relacao());
 
-        return usuario;
+        return service.cadastrar(usuario);
     }
 
     public UsuarioResponseDto toResponse(Usuario usuario) {

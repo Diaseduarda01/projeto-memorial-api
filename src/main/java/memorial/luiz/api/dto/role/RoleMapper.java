@@ -22,4 +22,12 @@ public class RoleMapper {
                 role.getNome()
         );
     }
+
+    public Role toEntity(RoleResponseDto dto) {
+        if (dto == null) return null;
+
+        return new Role(
+                dto.nome()
+        );
+    }
 }

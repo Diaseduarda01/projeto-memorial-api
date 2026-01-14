@@ -13,7 +13,7 @@ public record MidiaResponseDto(
         return new MidiaResponseDto(
                 midia.getId(),
                 midia.getNome(),
-                "http://localhost:8080/upload/" + midia.getCaminho(),
+                "https://projeto-memorial-api.onrender.com/upload/" + midia.getCaminho(),
                 midia.getTipo()
         );
     }

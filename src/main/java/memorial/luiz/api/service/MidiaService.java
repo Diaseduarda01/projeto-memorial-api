@@ -42,4 +42,14 @@ public class MidiaService {
     public List<Midia> buscarPorMemoria(Integer memoriaId) {
         return repository.findByMemoriaId(memoriaId);
     }
+
+    public void atualizarFk (Integer id, String nomeFk, Memoria memoria) {
+        if (nomeFk.equals("solicitacao")){
+            List<Midia> midias = this.buscarPorSolicitacao(id);
+            for (int i = 0; i < midias.size(); i++) {
+                midias.get(i).setMemoria(memoria);
+                repository.save(midias.get(i));
+            }
+        }
+    }
 }

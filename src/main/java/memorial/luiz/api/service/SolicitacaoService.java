@@ -21,6 +21,7 @@ public class SolicitacaoService {
     private final MemoriaService memoriaService;
     private final UsuarioService usuarioService;
     private final StatusService statusService;
+    private final MidiaService midiaService;
 
     public Solicitacao cadastrar(Solicitacao solicitacao) {
         Usuario usuario = usuarioService.buscarPorId(solicitacao.getUsuario().getId());
@@ -130,5 +131,6 @@ public class SolicitacaoService {
 
         memoria.setUsuario(solicitacao.getUsuario());
         memoriaService.cadastrar(memoria);
+        midiaService.atualizarFk(solicitacao.getId(), "solicitacao", memoria);
     }
 }

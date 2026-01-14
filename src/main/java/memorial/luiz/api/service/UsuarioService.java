@@ -21,6 +21,7 @@ public class UsuarioService {
     public Usuario cadastrar(Usuario usuario) {
         Role role = roleService.buscarPorNome(usuario.getRole().getNome());
         usuario.setRole(role);
+        usuario.setSenha("senhatemporaria");
         Usuario usuarioSalvo = repository.save(usuario);
         log.info("Usuário: {} salvo com sucesso!", usuarioSalvo);
         return usuarioSalvo;

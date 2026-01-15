@@ -19,7 +19,7 @@ public class MidiaMapper {
         return new MidiaResponseDto(
                 midia.getId(),
                 midia.getNome(),
-                "https://projeto-memorial-api.onrender.com/upload/" + midia.getCaminho(),
+                midia.getCaminho(),
                 midia.getTipo()
         );
     }

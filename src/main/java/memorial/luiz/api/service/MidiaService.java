@@ -27,7 +27,7 @@ public class MidiaService {
 
         Midia midia = new Midia();
         midia.setNome(file.getOriginalFilename());
-        midia.setCaminho("https://projeto-memorial-api.onrender.com/upload/" + nomeArquivo);
+        midia.setCaminho(nomeArquivo);
         midia.setTipo(tipo);
         midia.setSolicitacao(solicitacao);
         midia.setMemoria(memoria);

@@ -19,7 +19,7 @@ public class MidiaMapper {
         return new MidiaResponseDto(
                 midia.getId(),
                 midia.getNome(),
-                "http://localhost:8080/upload/" + midia.getCaminho(),
+                midia.getCaminho(),
                 midia.getTipo()
         );
     }
